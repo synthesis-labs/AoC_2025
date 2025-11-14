@@ -1,0 +1,12 @@
+[workspace]
+members = [
+    "utils",
+    "days/*",
+]
+resolver = "2"
+
+[workspace.dependencies]
+# Add common dependencies here
+anyhow = "1.0"
+itertools = "0.12"
+regex = "1.10"
