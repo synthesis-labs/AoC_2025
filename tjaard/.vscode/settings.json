@@ -1,0 +1,20 @@
+{
+  // Haskell Language Server settings
+  "haskell.manageHLS": "GHCup",
+  
+  // Enable all diagnostics
+  "haskell.plugin.ghcide-type-lints.globalOn": true,
+  "haskell.plugin.hlint.globalOn": true,
+  
+  // Show warnings as warnings (not errors)
+  "haskell.diagnosticsOnChange": true,
+  
+  // Configure which warnings to show
+  "haskell.checkProject": true,
+  
+  // Format on save (optional)
+  "editor.formatOnSave": false,
+  
+  // Show all problems
+  "problems.showCurrentInStatus": true
+}
