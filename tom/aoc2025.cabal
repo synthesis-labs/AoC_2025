@@ -1,0 +1,50 @@
+cabal-version: 3.4
+name: aoc2025
+version: 0.1.0.0
+license: BSD-3-Clause
+license-file: LICENSE
+author: Tom Wells
+maintainer: drshade@gmail.com
+build-type: Simple
+extra-doc-files: CHANGELOG.md
+
+common warnings
+  ghc-options: -Wall
+
+executable aoc2025
+  import: warnings
+  main-is: Main.hs
+  other-modules:
+    Day01_2024
+    Day12_2024
+    Handy
+    Play
+
+  default-extensions:
+    BangPatterns
+    LambdaCase
+    QuasiQuotes
+    TemplateHaskell
+
+  build-depends:
+    MemoTrie,
+    astar,
+    base,
+    bytestring,
+    containers,
+    directory,
+    h-raylib,
+    hmatrix,
+    http-client,
+    http-client-tls,
+    http-types,
+    matrix,
+    megaparsec,
+    mtl,
+    pretty-terminal,
+    split,
+    unordered-containers,
+    vector,
+
+  hs-source-dirs: app
+  default-language: GHC2024
