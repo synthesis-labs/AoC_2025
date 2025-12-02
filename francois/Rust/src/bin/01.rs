@@ -23,43 +23,32 @@ pub fn part_one(input: &str) -> Option<u64> {
 pub fn part_two(input: &str) -> Option<u64> {
     let mut cur: i32 = 50;
     let mut sum: u64 = 0;
+    let mut new = 0;
 
     for c in input.lines()  {
       let (rot, uncast) = c.split_at(1);
       let val: i32 = uncast.parse().unwrap();
-      match rot
+      let shift = val % 100;
+
+      sum += (val / 100) as u64;
+
+      if rot == "L"
       {
-        "L" => {
-            for _i in 0..val
-            {
-                cur -= 1;
-                if cur == 0
-                {
-                    sum += 1;
-                }
-                if cur < 0
-                {
-                    cur = 99;
-                }
-            }
+        new = (cur - shift + 100) % 100;
+        if (new > cur || new == 0) && cur != 0
+        {
+            sum += 1;
         }
-        "R" => {
-            for _i in 0..val
-            {
-                cur += 1;
-                if cur == 0
-                {
-                    sum += 1;
-                }
-                if cur > 99
-                {
-                    cur = 0;
-                    sum += 1;
-                }
-            }
-        }
-        _ => {}
       }
+      else if rot == "R"
+      {
+        new = (cur + shift) % 100;
+        if new < cur
+        {
+            sum += 1;
+        }
+      }
+      cur = new;
     }
 
     Some(sum)
