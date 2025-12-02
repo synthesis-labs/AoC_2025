@@ -70,7 +70,7 @@ fn process_line(instruction: Instruction, start_num: i32, count_middle: bool) ->
 }
 
 fn part1(input: &str) -> Result<i32> {
-    let parsed : Vec<Instruction> = utils::parse_lines_test(input);
+    let parsed : Vec<Instruction> = utils::parse_lines(input);
 
     let (_i32, zero_hits) = parsed
         .into_iter()
@@ -84,13 +84,12 @@ fn part1(input: &str) -> Result<i32> {
 }
 
 fn part2(input: &str) -> Result<i32> {
-    let parsed : Vec<Instruction> = utils::parse_lines_test(input);
+    let parsed : Vec<Instruction> = utils::parse_lines(input);
 
     let (_i32, zero_hits) = parsed
         .into_iter()
         .try_fold((50_i32, 0_i32), |(pos, hits), instruction| {
             let (new_pos, new_hits) = process_line(instruction, pos, true)?;
-            // let new_hits = hits + if new_pos == 0 { 1 } else { 0 };
             Ok::<(i32, i32), anyhow::Error>((new_pos, new_hits + hits))
         })?;
 

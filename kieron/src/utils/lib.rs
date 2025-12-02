@@ -23,29 +23,43 @@ pub fn read_lines(day: &str) -> Vec<String> {
         .collect()
 }
 
-/// Parse lines into a specific type
-pub fn parse_lines<T>(day: &str) -> Vec<T>
-where
-    T: std::str::FromStr,
-    T::Err: std::fmt::Debug,
-{
-    read_lines(day)
-        .iter()
-        .map(|line| line.parse::<T>().unwrap())
-        .collect()
-}
+// /// Parse lines into a specific type
+// pub fn parse_lines<T>(day: &str) -> Vec<T>
+// where
+//     T: std::str::FromStr,
+//     T::Err: std::fmt::Debug,
+// {
+//     read_lines(day)
+//         .iter()
+//         .map(|line| line.parse::<T>().unwrap())
+//         .collect()
+// }
 
-pub fn parse_lines_test<T>(input: &str) -> Vec<T>
+pub fn parse_lines<T>(input: &str) -> Vec<T>
 where 
     T: std::str::FromStr,
     T::Err: std::fmt::Debug,
 {
     input
         .lines()
-        .map(String::from)
+        // .map(String::from)
         .map(|line| line.parse::<T>().unwrap())
         .collect()
 }
+
+pub fn parse_csv<T>(input: &str) -> Vec<T>
+where 
+    T: std::str::FromStr,
+    T::Err: std::fmt::Debug,
+{
+    input
+        .split(",")
+        // .map(String::from)
+        .map(|line| line.parse::<T>().unwrap())
+        .collect()
+}
+
+
 
 /// Convenient alias for nom results on `&str` inputs.
 pub type NomResult<'a, T> = IResult<&'a str, T>;
