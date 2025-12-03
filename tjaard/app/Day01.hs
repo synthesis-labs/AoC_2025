@@ -33,16 +33,12 @@ distanceToZero n p s
   | otherwise = (n - p) `mod` n
 
 countZeroClicks :: DialSize -> DialPosition -> Turn -> Int
-countZeroClicks n p s =
-  (distanceToZero n p s + abs s) `div` n
-
-countWithTurns :: (Position -> Turn -> Int) -> [Turn] -> Int
-countWithTurns f turns = snd $ foldl step (dialStart, 0) turns
-  where
-    step (pos, count) dist = (turn pos dist, count + f pos dist)
+countZeroClicks n p s = (distanceToZero n p s + abs s) `div` n
 
 part1 :: [Turn] -> Int
-part1 = countWithTurns (\pos dist -> if turn pos dist == 0 then 1 else 0)
+part1 turns = length . filter (== 0) $ scanl turn dialStart turns
 
 part2 :: [Turn] -> Int
-part2 = countWithTurns (countZeroClicks dialSize)
+part2 turns = sum $ zipWith (countZeroClicks dialSize) positions turns
+  where
+    positions = scanl turn dialStart turns
