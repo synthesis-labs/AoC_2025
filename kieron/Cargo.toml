@@ -1,0 +1,10 @@
+[workspace]
+members = [
+    "src/utils",
+    "days/*",
+]
+resolver = "2"
+
+[workspace.dependencies]
+anyhow = "1"
+nom = "7"

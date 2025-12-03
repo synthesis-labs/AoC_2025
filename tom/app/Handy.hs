@@ -1,26 +1,24 @@
-module Handy (Parser, Parser', XY, xy, parse, lift, puzzle, parse', chunkBy, Year, Day, PuzzleType(..)) where
+{-# OPTIONS_GHC -Wno-incomplete-uni-patterns #-}
+module Handy (Parser, Parser', XY, xy, num, parse, lift, puzzle, parse', chunkBy, Year, Day, PuzzleType(..), allEqual, divisors) where
 
-import           Control.Monad              (unless)
-import           Control.Monad.Identity     (Identity (runIdentity))
-import           Control.Monad.Trans        (lift)
 import qualified Data.ByteString.Char8      as Char8 (pack)
 import qualified Data.ByteString.Lazy.Char8 as LChar8 (unpack)
-import           Data.Functor               (void)
-import           Data.Void                  (Void)
 import           Network.HTTP.Client        (httpLbs, newManager, parseRequest,
                                              requestHeaders, responseBody,
                                              responseStatus)
 import           Network.HTTP.Client.TLS    (tlsManagerSettings)
 import           Network.HTTP.Types.Header  (hCookie)
 import           Network.HTTP.Types.Status  (statusCode)
+import           Prelude                    hiding (Day, Year, some)
 import           System.Console.Pretty      (Color (..), Pretty (..))
 import           System.Directory           (createDirectory,
                                              doesDirectoryExist, doesFileExist)
 import           System.IO                  (IOMode (ReadMode), hGetContents,
                                              openFile)
 import           Text.Megaparsec            (MonadParsec, ParsecT, getSourcePos,
-                                             runParserT, sourceColumn,
+                                             runParserT, some, sourceColumn,
                                              sourceLine, unPos)
+import           Text.Megaparsec.Char       (digitChar)
 import           Text.Megaparsec.Error      (errorBundlePretty)
 
 -- Most practically useful Parser in any context
@@ -59,6 +57,9 @@ type XY = (Int, Int)
 -- Returns zero-indexed position of the parser (must run BEFORE consuming)
 xy :: MonadParser m => m XY
 xy = (\p -> (unPos (sourceColumn p) - 1, unPos (sourceLine p) - 1)) <$> getSourcePos
+
+num :: MonadParser m => m Int
+num = read <$> some digitChar
 
 -- Get the puzzle input, either from disk, or from http first time
 --
@@ -108,3 +109,9 @@ chunkBy _ [a]      = [[a]]
 chunkBy p (a:b:xs) | p a b     = let (chunk:chunks) = chunkBy p (b:xs)
                                   in (a:chunk):chunks -- Probably terribly inefficient and not tail recursive but i don't care (yet)
                    | otherwise = [a] : chunkBy p (b:xs)
+
+divisors :: Int -> [Int]
+divisors n = [x | x <- [1..(n-1)], n `rem` x == 0]
+
+allEqual :: (Eq a) => [a] -> Bool
+allEqual xs = length (group xs) <= 1
