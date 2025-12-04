@@ -25,6 +25,7 @@ edition = "2021"
 utils = { path = "../../src/utils" }
 anyhow = { workspace = true }
 nom = { workspace = true }
+rayon = { workspace = true }
 EOF
 
 cp "$SCRIPT_DIR/src/day_template.rs" src/main.rs
