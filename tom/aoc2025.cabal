@@ -22,7 +22,9 @@ executable aoc2025
     Day02_2018
     Day03
     Day03_2018
+    Day04
     Day04_2018
+    Day05
     Day12_2024
     Handy
     Play
@@ -42,6 +44,7 @@ executable aoc2025
     http-client,
     http-client-tls,
     http-types,
+    massiv,
     matrix,
     megaparsec,
     pretty-terminal,
