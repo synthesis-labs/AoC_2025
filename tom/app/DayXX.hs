@@ -1,4 +1,3 @@
-
 module DayXX where
 
 import           Handy
