@@ -1,6 +1,6 @@
 module Main where
 
-import qualified Day01_2024
+import qualified Day07
 
 main :: IO ()
-main = void $ print <$> Day01_2024.part1
+main = void Day07.part2
