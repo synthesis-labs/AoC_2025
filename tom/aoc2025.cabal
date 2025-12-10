@@ -26,6 +26,11 @@ executable aoc2025
     Day04_2018
     Day05
     Day06
+    Day07
+    Day07Vis
+    Day08
+    Day09
+    Day10
     Day12_2024
     Handy
     Play
@@ -48,6 +53,7 @@ executable aoc2025
     massiv,
     matrix,
     megaparsec,
+    parallel,
     pretty-terminal,
     rerebase,
     split,

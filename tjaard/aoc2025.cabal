@@ -6,7 +6,7 @@ executable aoc2025
   default-language: GHC2021
   ghc-options: -Wall
   main-is: Main.hs
-  other-modules: Day00, Day01, Day02, Utils
+  other-modules: Day00, Day01, Day02, Day03, Day04, Day05, Day06, Utils, CharGrid
   hs-source-dirs: app
   build-depends: base >=4.16 && <5
                , containers
