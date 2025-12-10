@@ -31,6 +31,7 @@ executable aoc2025
     Day08
     Day09
     Day10
+    Day11
     Day12_2024
     Handy
     Play
@@ -42,6 +43,7 @@ executable aoc2025
     TemplateHaskell
 
   build-depends:
+    -- unordered-containers,
     MemoTrie,
     astar,
     directory,
@@ -56,8 +58,9 @@ executable aoc2025
     parallel,
     pretty-terminal,
     rerebase,
+    sbv,
+    search-algorithms,
     split,
-    unordered-containers,
     vector,
 
   hs-source-dirs: app
