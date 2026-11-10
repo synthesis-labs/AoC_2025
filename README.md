@@ -8,7 +8,7 @@
 
 Any issues please reach out to Mike, Tom, Tjaard, Bhavesh, Marais, or Francois. for help!
 
-# The Results (judged by Claude)
+# The Results (judged by Claude :robot: and Tom :elf:)
 
 | Award                 | Winner       | For                                                      | Score |
 |-----------------------|--------------|----------------------------------------------------------|-------|
