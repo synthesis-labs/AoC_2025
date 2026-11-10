@@ -18,7 +18,6 @@ public class Day_01_Original : IPuzzle
 		var cur = 50;
 		foreach (var line in input)
 		{
-			var segment = line;
 			var rot = line[0];
 			int.TryParse(line.Split(rot)[1], out var val);
 			
@@ -49,8 +48,6 @@ public class Day_01_Original : IPuzzle
 		var cur = 50;
 		foreach (var line in input)
 		{
-			var prev = cur;
-			var segment = line;
 			var rot = line[0];
 			int.TryParse(line.Split(rot)[1], out var val);
 
